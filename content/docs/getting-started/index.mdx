@@ -1,0 +1,57 @@
+---
+title: Getting Started
+description: Install Oh My OpenAgent and verify your first OpenCode session.
+---
+
+## Prerequisites
+
+| Item | Requirement |
+|---|---|
+| OpenCode | `opencode` must be available. |
+| Providers | Claude, OpenAI, Gemini, Copilot, OpenCode Go/Zen, Kimi for Coding, Z.ai, or whichever providers you use. |
+| OS | macOS, Linux, WSL, or Windows x64. |
+
+## Install
+
+```bash
+bunx oh-my-openagent install
+```
+
+Compatibility path:
+
+```bash
+bunx oh-my-opencode install
+```
+
+Both npm packages currently publish the same version and expose both `oh-my-openagent` and `oh-my-opencode` binaries.
+
+## Non-Interactive Install
+
+```bash
+bunx oh-my-openagent install --no-tui \
+  --claude=yes \
+  --openai=yes \
+  --gemini=no \
+  --copilot=no
+```
+
+## Verify
+
+```bash
+opencode --version
+bunx oh-my-openagent doctor
+```
+
+## First Task
+
+```text
+ulw
+```
+
+For precise work, plan first:
+
+```text
+@plan refactor the auth module without behavior changes
+/start-work
+```
+

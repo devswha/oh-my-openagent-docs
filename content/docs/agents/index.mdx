@@ -1,0 +1,29 @@
+---
+title: Agents
+description: The OmO agent catalog and responsibility split.
+---
+
+## Agent Map
+
+<Mermaid chart={`
+flowchart LR
+    A["Sisyphus"] --> B["Planning\nPrometheus / Metis / Momus"]
+    A --> C["Deep Work\nHephaestus / Oracle"]
+    A --> D["Retrieval\nExplore / Librarian"]
+    A --> E["Execution\nAtlas / Sisyphus-Junior"]
+    A --> F["Surface QA\nMultimodal-Looker / Browser / Tmux"]
+`} />
+
+| Agent | Role |
+|---|---|
+| Sisyphus | Main orchestrator. Reads intent, delegates, and finishes. |
+| Hephaestus | GPT-native deep worker for implementation and debugging. |
+| Prometheus | Strategic planner. Interviews and plans; does not code. |
+| Atlas | Executes approved plans through category+skill delegation. |
+| Oracle | Read-only architecture/debugging consultant. |
+| Librarian | Docs, remote repos, and OSS examples. |
+| Explore | Fast codebase search. |
+| Metis | Gap analysis before a plan hardens. |
+| Momus | Ruthless plan/result review. |
+| Sisyphus-Junior | Focused category-spawned executor. |
+

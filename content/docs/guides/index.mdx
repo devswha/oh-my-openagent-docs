@@ -1,0 +1,37 @@
+---
+title: Guides
+description: Choose the right OmO workflow for each task.
+---
+
+## Decision Flow
+
+<Mermaid chart={`
+flowchart TD
+    A["Task"] --> B{"Small fix?"}
+    B -->|Yes| C["Normal prompt"]
+    B -->|No| D{"Want autonomy?"}
+    D -->|Yes| E["ulw / ultrawork"]
+    D -->|No| F{"Need a verified plan?"}
+    F -->|Yes| G["Prometheus -> /start-work"]
+    F -->|No| E
+    C --> H["Verify through surface"]
+    E --> H
+    G --> H
+`} />
+
+## Ultrawork
+
+`ulw` is the “just do it” path. Give a goal and the surface that proves it works.
+
+```text
+ulw fix the login error message and verify success/failure in the browser
+```
+
+## Prometheus + Atlas
+
+Use this when correctness matters more than speed. Prometheus interviews and plans; Atlas executes the approved plan.
+
+## Model Rule of Thumb
+
+Do not memorize defaults. Use categories. Keep Explore/Librarian cheap and fast; reserve high reasoning models for Sisyphus, Hephaestus, Oracle, and planning.
+

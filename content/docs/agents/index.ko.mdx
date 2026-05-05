@@ -1,0 +1,75 @@
+---
+title: 에이전트
+description: OmO 에이전트 카탈로그와 역할 분담.
+---
+
+## 에이전트 시스템
+
+공개 사이트는 “10개 전문 에이전트”를 전면에 내세웁니다. 문서에서는 여기에 category 기반 실행자인 **Sisyphus-Junior**까지 함께 설명합니다. 사용자가 직접 고르는 핵심 표면과, 내부 위임으로 생성되는 실행 표면을 구분하면 이해가 쉽습니다.
+
+<Mermaid chart={`
+flowchart LR
+    A["Sisyphus\n메인 오케스트레이터"] --> B["Planning\nPrometheus / Metis / Momus"]
+    A --> C["Deep Work\nHephaestus / Oracle"]
+    A --> D["Retrieval\nExplore / Librarian"]
+    A --> E["Execution\nAtlas / Sisyphus-Junior"]
+    A --> F["Surface QA\nMultimodal-Looker / Browser / Tmux"]
+`} />
+
+## 핵심 에이전트
+
+| 에이전트 | 성격 | 하는 일 |
+|---|---|---|
+| Sisyphus | 잠들지 않는 CTO | 사용자의 진짜 의도를 읽고, 작업을 분해하고, 전문가에게 위임하고, 완료까지 밀어붙입니다. |
+| Hephaestus | 심층 작업자 | 목표를 받아 코드베이스 탐색 → 계획 → 구현 → 검증을 직접 수행합니다. 복잡한 디버깅과 아키텍처 작업에 강합니다. |
+| Prometheus | 전략 기획자 | 인터뷰와 리서치로 실행 가능한 계획을 만듭니다. 코드는 쓰지 않습니다. |
+| Atlas | 마스터 실행가 | Prometheus 계획을 읽고 category+skills 시스템으로 작업을 분배합니다. 작업 간 learnings를 축적합니다. |
+
+## 전문 에이전트
+
+| 에이전트 | 역할 | 주의점 |
+|---|---|---|
+| Oracle | 아키텍처/디버깅 컨설턴트 | 읽기 전용입니다. 구현은 하지 않습니다. |
+| Librarian | 공식 문서, OSS 예제, 원격 저장소 조사 | 증거 기반으로 답합니다. 문서를 쓰거나 코드를 고치지 않습니다. |
+| Explore | 빠른 코드베이스 검색 | grep/pattern discovery에 최적화되어 있습니다. |
+| Multimodal-Looker | 이미지, PDF, 스크린샷, 다이어그램 분석 | 시각 자료를 해석할 때 사용합니다. |
+| Metis | 계획 전 gap 분석 | 숨은 의도와 모호함을 찾아냅니다. |
+| Momus | 계획/결과 검토 | 계획이 불완전하면 통과시키지 않습니다. |
+| Sisyphus-Junior | category-spawned executor | 다시 위임하지 못합니다. 주어진 범위의 구현에 집중합니다. |
+
+## 작업 흐름 예시
+
+<Mermaid chart={`
+sequenceDiagram
+    participant U as User
+    participant S as Sisyphus
+    participant E as Explore
+    participant L as Librarian
+    participant O as Oracle
+    participant J as Sisyphus-Junior
+    participant V as Verification
+
+    U->>S: 목표 전달
+    S->>E: 코드베이스 패턴 조사
+    S->>L: 외부 문서/예제 조사
+    alt 아키텍처 판단 필요
+        S->>O: 읽기 전용 자문
+        O-->>S: 결정 기준 반환
+    end
+    S->>J: category + skills로 구현 위임
+    J-->>S: 변경 사항과 검증 결과
+    S->>V: 독립 검증
+    V-->>U: 완료 또는 재작업
+`} />
+
+## 어떤 에이전트를 떠올리면 좋을까
+
+| 작업 유형 | 떠올릴 표면 |
+|---|---|
+| “그냥 끝까지 해줘” | Sisyphus + `ulw` |
+| 복잡한 계획 | Prometheus → Atlas |
+| 원인 모르는 버그 | Explore + Oracle + Hephaestus |
+| 외부 API/라이브러리 사용법 | Librarian |
+| 프론트엔드/디자인 | `visual-engineering` category + UI/UX skill |
+| 문서/글 | `writing` category |
+

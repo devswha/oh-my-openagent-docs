@@ -1,0 +1,81 @@
+---
+title: 주요 개념
+description: OmO가 의도, 계획, 모델, 에이전트, 카테고리, 스킬, 도구를 연결하는 방식.
+---
+
+## OmO의 구성 요소
+
+Oh My OpenAgent는 OpenCode에 네 가지 층을 추가합니다.
+
+<Mermaid chart={`
+flowchart TD
+    A["사용자 입력"] --> B["Intent Gate\n말 그대로가 아니라 진짜 의도 분류"]
+    B --> C["Orchestrators\nSisyphus / Prometheus / Atlas"]
+    C --> D["Specialists\nOracle / Librarian / Explore / Hephaestus / Momus / Metis"]
+    D --> E["Tools\nLSP / AST-Grep / MCP / Tmux / Browser"]
+    E --> F["State & Continuation\nTodo, Boulder, Background Tasks"]
+    F -.-> C
+`} />
+
+### 각 개념 요약
+
+| 개념 | 역할 |
+|---|---|
+| Intent Gate | 질문, 조사, 구현, 수정, 계획 등 실제 의도를 분류합니다. |
+| Sisyphus | 기본 오케스트레이터. 작업을 끝까지 밀고, 필요하면 전문가에게 위임합니다. |
+| Prometheus | 전략 플래너. 인터뷰하고, 리서치하고, 실행 가능한 계획을 씁니다. |
+| Atlas | 계획 실행 지휘자. 검증된 계획을 읽고 category+skill로 worker에게 맡깁니다. |
+| Category | 작업 종류를 의미합니다. 예: `visual-engineering`, `deep`, `quick`. |
+| Skill | 특정 도메인 지식과 도구 사용 규칙을 주입합니다. 예: `playwright`, `git-master`. |
+
+## 계획과 실행 분리
+
+복잡한 작업에서 OmO는 계획을 곧바로 구현하지 않습니다. Prometheus가 먼저 질문하고, Metis가 빈틈을 찾고, Momus가 계획을 검토합니다. 그 다음 Atlas가 실행합니다.
+
+<Mermaid chart={`
+stateDiagram-v2
+    [*] --> Interview: 작업 설명
+    Interview --> Research: Explore/Librarian로 코드베이스·문서 조사
+    Research --> Clearance: 요구사항 명확성 확인
+    Clearance --> Interview: 모호함 남음
+    Clearance --> Plan: 충분히 명확함
+    Plan --> Metis: 숨은 의도·누락 점검
+    Metis --> Momus: 고정밀 검토
+    Momus --> Plan: REJECTED
+    Momus --> Atlas: OKAY
+    Atlas --> Workers: category + skills 위임
+    Workers --> Verify: 결과 반환
+    Verify --> Atlas: 수정 필요
+    Verify --> [*]: 완료
+`} />
+
+## Category + Skill
+
+OmO의 위임 단위는 “모델명”이 아니라 “작업 성격”입니다.
+
+```ts
+// 의미 기반 라우팅
+task({
+  category: "visual-engineering",
+  load_skills: ["frontend-ui-ux"],
+  prompt: "설정 페이지 레이아웃을 개선해줘",
+})
+```
+
+| 카테고리 | 쓰는 상황 |
+|---|---|
+| `visual-engineering` | 프론트엔드, UI/UX, 디자인, 애니메이션 |
+| `ultrabrain` | 어려운 논리, 아키텍처, 깊은 판단 |
+| `deep` | 자율 리서치와 구현이 모두 필요한 작업 |
+| `quick` | 단일 파일 수정, 오타, 간단한 변경 |
+| `writing` | 문서, 산문, 기술 글쓰기 |
+
+모델 기본값은 설치 시점과 provider 상태에 따라 달라질 수 있습니다. 그래서 사용자는 모델명을 외우기보다 카테고리와 스킬을 고르는 편이 안전합니다.
+
+## 모델 계열
+
+- **Claude 계열**: Sisyphus/Prometheus처럼 구조화된 지시와 오케스트레이션에 강합니다.
+- **GPT 계열**: Hephaestus/Oracle처럼 명시적 추론, 아키텍처 판단, 복잡한 디버깅에 잘 맞습니다.
+- **Gemini 계열**: 시각·프론트엔드·멀티모달 작업에 강합니다.
+- **빠른 경량 모델**: Explore/Librarian처럼 검색 중심인 작업에 비용 효율적입니다.
+

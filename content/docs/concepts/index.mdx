@@ -1,0 +1,50 @@
+---
+title: Core Concepts
+description: How OmO connects intent, planning, models, agents, categories, skills, and tools.
+---
+
+## System Shape
+
+<Mermaid chart={`
+flowchart TD
+    A["User Input"] --> B["Intent Gate"]
+    B --> C["Orchestrators\nSisyphus / Prometheus / Atlas"]
+    C --> D["Specialists\nOracle / Librarian / Explore / Hephaestus / Momus / Metis"]
+    D --> E["Tools\nLSP / AST-Grep / MCP / Tmux / Browser"]
+    E --> F["State & Continuation"]
+    F -.-> C
+`} />
+
+## Planning vs Execution
+
+Prometheus plans and does not write code. Metis catches gaps. Momus reviews the plan. Atlas executes approved plans by delegating category+skill tasks.
+
+<Mermaid chart={`
+stateDiagram-v2
+    [*] --> Interview
+    Interview --> Research
+    Research --> Clearance
+    Clearance --> Interview: unclear
+    Clearance --> Plan: clear
+    Plan --> Metis
+    Metis --> Momus
+    Momus --> Plan: rejected
+    Momus --> Atlas: okay
+    Atlas --> Workers
+    Workers --> Verify
+    Verify --> Atlas: needs fix
+    Verify --> [*]: done
+`} />
+
+## Category + Skill
+
+Categories describe the work; skills inject domain expertise.
+
+| Category | Use |
+|---|---|
+| `visual-engineering` | Frontend, UI/UX, design, animation. |
+| `ultrabrain` | Hard logic and architecture. |
+| `deep` | Autonomous research and implementation. |
+| `quick` | Trivial changes. |
+| `writing` | Docs and prose. |
+

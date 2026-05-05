@@ -1,0 +1,110 @@
+---
+title: 시작하기
+description: Oh My OpenAgent를 설치하고 첫 OpenCode 세션을 검증합니다.
+---
+
+## 0. 준비물
+
+| 항목 | 내용 |
+|---|---|
+| OpenCode | `opencode` 명령이 실행 가능해야 합니다. |
+| 모델 접근 권한 | Claude, OpenAI, Gemini, GitHub Copilot, OpenCode Go/Zen, Kimi for Coding, Z.ai 중 사용할 provider. |
+| 환경 | macOS, Linux, WSL, Windows x64. |
+
+OmO는 provider 하나만 고집하지 않습니다. Sisyphus, Hephaestus, Oracle, Explore처럼 역할이 다른 에이전트가 각자 맞는 모델 계열을 씁니다.
+
+## 1. 설치
+
+공식 사이트의 공개 설치 명령은 다음입니다.
+
+```bash
+bunx oh-my-openagent install
+```
+
+현재 npm에는 `oh-my-openagent`와 `oh-my-opencode`가 같은 버전으로 배포되어 있고, 둘 다 `oh-my-openagent` / `oh-my-opencode` 바이너리를 제공합니다. 기존 자동화는 아래 명령을 계속 사용할 수 있습니다.
+
+```bash
+bunx oh-my-opencode install
+```
+
+설치기는 보통 다음을 처리합니다.
+
+<Steps>
+
+### Subscription 선택
+
+Claude, OpenAI, Gemini, Copilot, OpenCode Go/Zen, Kimi for Coding, Z.ai 등 실제로 사용할 수 있는 provider를 묻습니다.
+
+### Plugin 등록
+
+OpenCode 설정의 `plugin` 배열에 `oh-my-openagent`를 등록합니다. legacy `oh-my-opencode` 항목은 전환 기간 동안 경고와 함께 로드됩니다.
+
+### OmO 설정 파일 생성
+
+사용자 설정 디렉토리에 `oh-my-openagent.json[c]` 또는 호환 `oh-my-opencode.json[c]` 파일을 생성합니다.
+
+### 인증 안내
+
+필요한 provider에 대해 `opencode auth login` 흐름을 안내합니다. `--skip-auth`를 주면 인증 안내를 건너뜁니다.
+
+</Steps>
+
+## 2. 비대화형 설치
+
+에이전트나 스크립트가 설치할 때는 구독 상태를 플래그로 넘깁니다.
+
+```bash
+bunx oh-my-openagent install --no-tui \
+  --claude=yes \
+  --openai=yes \
+  --gemini=no \
+  --copilot=no
+```
+
+주요 플래그:
+
+| 플래그 | 값 |
+|---|---|
+| `--claude` | `yes`, `no`, `max20` |
+| `--openai`, `--gemini`, `--copilot` | `yes` 또는 `no` |
+| `--opencode-go`, `--opencode-zen` | `yes` 또는 `no` |
+| `--zai-coding-plan`, `--kimi-for-coding`, `--vercel-ai-gateway` | `yes` 또는 `no` |
+| `--skip-auth` | 인증 안내 생략 |
+
+## 3. 검증
+
+```bash
+opencode --version
+bunx oh-my-openagent doctor
+```
+
+`doctor`는 시스템, 설정, 도구, 모델 해석을 확인합니다.
+
+| 영역 | 확인하는 것 |
+|---|---|
+| System | OpenCode 버전, 플러그인 등록, legacy 이름 경고 |
+| Config | JSONC 파싱, schema 검증, agent/category override |
+| Tools | AST-Grep, LSP, GitHub CLI, MCP 서버 |
+| Models | 모델 capability cache, fallback chain, provider availability |
+
+## 4. 첫 작업
+
+OpenCode를 열고 한 줄만 입력해 보세요.
+
+```text
+ulw
+```
+
+또는 더 명시적으로:
+
+```text
+ultrawork 현재 프로젝트 구조를 파악하고 README의 설치 설명을 검증해줘
+```
+
+복잡하고 안전하게 진행해야 하는 작업은 Prometheus 계획 모드를 쓰세요.
+
+```text
+@plan 인증 모듈을 동작 변경 없이 리팩토링하고 싶어
+/start-work
+```
+

@@ -1,0 +1,55 @@
+---
+title: Reference
+description: Packages, config files, CLI commands, categories, hooks, and environment variables.
+---
+
+## Package Names
+
+| Name | Purpose |
+|---|---|
+| `oh-my-openagent` | Public package name and preferred install path. |
+| `oh-my-opencode` | Compatibility package name. Same current version and binaries. |
+| `oh-my-openagent` plugin entry | Preferred OpenCode plugin entry. |
+| `oh-my-opencode` plugin entry | Legacy entry loaded during the transition. |
+
+## CLI
+
+| Command | Purpose |
+|---|---|
+| `bunx oh-my-openagent install` | Public installer. |
+| `bunx oh-my-opencode install` | Compatibility installer. |
+| `bunx oh-my-openagent doctor` | System/config/tool/model diagnostics. |
+| `bunx oh-my-openagent run <message>` | OpenCode session runner with completion enforcement. |
+| `bunx oh-my-openagent mcp oauth ...` | OAuth for remote MCP servers. |
+
+## Config Files
+
+| Scope | Paths |
+|---|---|
+| Project | `.opencode/oh-my-openagent.json[c]`, `.opencode/oh-my-opencode.json[c]` |
+| User | `~/.config/opencode/oh-my-openagent.json[c]`, `~/.config/opencode/oh-my-opencode.json[c]` |
+
+## Quick Config
+
+```jsonc
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/master/assets/oh-my-openagent.schema.json",
+  "agents": {
+    "oracle": { "model": "openai/gpt-5.4", "variant": "high" },
+    "explore": { "model": "github-copilot/grok-code-fast-1" }
+  },
+  "categories": {
+    "quick": { "model": "opencode/gpt-5-nano" },
+    "visual-engineering": { "model": "google/gemini-3.1-pro" }
+  }
+}
+```
+
+## Environment
+
+| Variable | Meaning |
+|---|---|
+| `OMO_SEND_ANONYMOUS_TELEMETRY=0` | Disable anonymous active-install telemetry. |
+| `OMO_DISABLE_POSTHOG=1` | Disable PostHog telemetry. |
+| `OPENCODE_CONFIG_DIR` | Override OpenCode config directory. |
+

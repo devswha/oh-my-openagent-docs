@@ -1,0 +1,29 @@
+---
+title: Tools
+description: Execution, retrieval, and verification surfaces available to OmO agents.
+---
+
+## Tool Stack
+
+<Mermaid chart={`
+flowchart TD
+    A["Agent"] --> B["Code Intelligence"]
+    A --> C["Runtime Surface"]
+    A --> D["External Knowledge"]
+    A --> E["Safety / Continuation"]
+    B --> B1["LSP"]
+    B --> B2["AST-Grep"]
+    B --> B3["Hashline Edit"]
+    C --> C1["tmux"]
+    C --> C2["Browser"]
+    C --> C3["HTTP / CLI QA"]
+    D --> D1["Context7"]
+    D --> D2["Web Search"]
+    D --> D3["GitHub Code Search"]
+    E --> E1["Todo continuation"]
+    E --> E2["Boulder lineage"]
+    E --> E3["Background tasks"]
+`} />
+
+OmO treats real usage surfaces as mandatory evidence: browser UI in a browser, CLI/TUI in tmux, HTTP APIs through live requests, and libraries through driver scripts.
+

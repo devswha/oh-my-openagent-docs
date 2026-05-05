@@ -1,0 +1,13 @@
+{
+  "title": "OmO Docs",
+  "pages": [
+    "index",
+    "getting-started",
+    "concepts",
+    "guides",
+    "agents",
+    "tools",
+    "reference",
+    "support"
+  ]
+}
