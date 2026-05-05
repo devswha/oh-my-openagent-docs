@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 
 export function CopyInstallCommand({
-  command = 'bunx oh-my-openagent install',
+  command = 'bunx oh-my-opencode install',
   label = 'Install command',
 }: {
   command?: string;

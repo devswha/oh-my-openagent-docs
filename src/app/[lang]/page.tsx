@@ -23,24 +23,24 @@ const translations = {
     pipeline: 'The Working Loop', pipelineDesc: 'A request is classified, routed, delegated, checked, and driven through the surface.',
     steps: [['Intent Gate', 'Read the real intent'], ['Sisyphus', 'Plan and delegate'], ['Specialists', 'Research and implement'], ['Verification', 'Diagnostics, build, tests, QA']],
     agents: 'Core Agents', agentsDesc: 'A coordinated development team inside OpenCode.',
-    skills: 'Start in 3 Steps', install: 'Install command', stepList: [['01', 'Install OpenCode', 'Install and authenticate OpenCode first.'], ['02', 'Install OmO', 'Run bunx oh-my-openagent install and follow provider prompts.'], ['03', 'Work', 'Run bunx oh-my-opencode doctor, then type ultrawork.']],
+    skills: 'Start in 3 Steps', install: 'Install command', stepList: [['01', 'Install OpenCode', 'Install and authenticate OpenCode first.'], ['02', 'Install OmO', 'Run bunx oh-my-opencode install and follow provider prompts.'], ['03', 'Work', 'Run bunx oh-my-opencode doctor, then type ultrawork.']],
   },
   ko: {
     metaTitle: 'Oh My OpenAgent - OpenCode 멀티 모델 오케스트레이션',
     metaDescription: 'Oh My OpenAgent 공식 문서. OpenCode에 멀티 모델 에이전트 오케스트레이션을 얹는 플러그인입니다.',
     subtitle: 'OpenCode를 위한 멀티 모델 오케스트레이션',
-    desc: ['설치하면 바로 쓰는 OpenCode 하네스.', 'Sisyphus가 계획하고, 전문가가 실행하고, 도구가 검증합니다.'],
+    desc: ['설치하면 바로 OpenCode에서 팀처럼 움직입니다.', 'Sisyphus가 계획하고, 전문가가 실행하고, 도구가 확인합니다.'],
     getStarted: '시작하기', docs: '문서 보기', different: 'OmO가 더하는 것',
     features: [
       ['기강 잡힌 에이전트', 'Sisyphus, Hephaestus, Prometheus, Atlas, Oracle, Librarian, Explore, Metis, Momus, Sisyphus-Junior가 각자 맡은 일을 합니다.'],
       ['ultrawork', 'ultrawork 또는 ulw만 입력하세요. 탐색, 위임, 구현, 검증을 끝날 때까지 이어갑니다.'],
-      ['카테고리 라우팅', 'visual-engineering, ultrabrain, deep, quick, writing처럼 작업 종류를 고르면 하네스가 모델을 고릅니다.'],
-      ['에이전트용 도구', 'LSP 진단, AST-grep, 백그라운드 에이전트, tmux, MCP 검색, 해시라인 편집, 브라우저/멀티모달 도구를 제공합니다.'],
+      ['카테고리 라우팅', 'visual-engineering, ultrabrain, deep, quick, writing처럼 작업 종류를 고르면 OmO가 모델을 고릅니다.'],
+      ['에이전트용 도구', 'LSP 진단, AST-grep, background agent, tmux, MCP 검색, hashline edit, browser QA를 묶어 씁니다.'],
     ],
-    pipeline: '작동 흐름', pipelineDesc: '요청을 분류하고, 라우팅하고, 위임하고, 검증한 뒤 실제 표면에서 확인합니다.',
+    pipeline: '작동 흐름', pipelineDesc: '요청을 분류하고, 라우팅하고, 위임한 뒤 실제 표면에서 확인합니다.',
     steps: [['Intent Gate', '진짜 의도 파악'], ['Sisyphus', '계획과 위임'], ['전문가', '리서치와 구현'], ['검증', '진단, 빌드, 테스트, QA']],
     agents: '핵심 에이전트', agentsDesc: 'OpenCode 안에 들어온 작은 개발팀입니다.',
-    skills: '3단계로 시작', install: '설치 명령', stepList: [['01', 'OpenCode 설치', '먼저 OpenCode를 설치하고 인증합니다.'], ['02', 'OmO 설치', 'bunx oh-my-openagent install을 실행하고 provider 질문에 답합니다.'], ['03', '작업 시작', 'bunx oh-my-opencode doctor로 확인한 뒤 ultrawork를 입력합니다.']],
+    skills: '3단계로 시작', install: '설치 명령', stepList: [['01', 'OpenCode 설치', '먼저 OpenCode를 설치하고 인증합니다.'], ['02', 'OmO 설치', 'bunx oh-my-opencode install을 실행하고 provider 질문에 답합니다.'], ['03', '작업 시작', 'bunx oh-my-opencode doctor로 확인한 뒤 ultrawork를 입력합니다.']],
   },
   zh: {
     metaTitle: 'Oh My OpenAgent - OpenCode 多模型编排',
@@ -51,7 +51,7 @@ const translations = {
     pipeline: '工作循环', pipelineDesc: '请求会被分类、路由、委派、验证，并在真实使用界面检查。',
     steps: [['Intent Gate', '理解真实意图'], ['Sisyphus', '规划和委派'], ['Specialists', '研究和实现'], ['Verification', '诊断、构建、测试、QA']],
     agents: '核心智能体', agentsDesc: 'OpenCode 内部的协作开发团队。', skills: '三步开始', install: '安装命令',
-    stepList: [['01', '安装 OpenCode', '先安装并认证 OpenCode。'], ['02', '安装 OmO', '运行 bunx oh-my-openagent install。'], ['03', '开始工作', '运行 doctor 后输入 ultrawork。']],
+    stepList: [['01', '安装 OpenCode', '先安装并认证 OpenCode。'], ['02', '安装 OmO', '运行 bunx oh-my-opencode install。'], ['03', '开始工作', '运行 doctor 后输入 ultrawork。']],
   },
   ja: {
     metaTitle: 'Oh My OpenAgent - OpenCode のマルチモデル編成',
@@ -62,7 +62,7 @@ const translations = {
     pipeline: 'ワークループ', pipelineDesc: '要求を分類し、ルーティングし、委任し、検証し、実際の表面で確認します。',
     steps: [['Intent Gate', '本当の意図を読む'], ['Sisyphus', '計画と委任'], ['Specialists', '調査と実装'], ['Verification', '診断、ビルド、テスト、QA']],
     agents: 'コアエージェント', agentsDesc: 'OpenCode 内の小さな開発チームです。', skills: '3 ステップで開始', install: 'インストールコマンド',
-    stepList: [['01', 'OpenCode をインストール', '先に OpenCode を認証します。'], ['02', 'OmO をインストール', 'bunx oh-my-openagent install を実行します。'], ['03', '作業開始', 'doctor の後に ultrawork と入力します。']],
+    stepList: [['01', 'OpenCode をインストール', '先に OpenCode を認証します。'], ['02', 'OmO をインストール', 'bunx oh-my-opencode install を実行します。'], ['03', '作業開始', 'doctor の後に ultrawork と入力します。']],
   },
 } as const;
 
@@ -94,7 +94,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               <Link href={`${prefix}/docs/getting-started`} className="rounded-full bg-fd-primary px-5 py-3 font-semibold text-fd-primary-foreground">{t.getStarted}</Link>
               <Link href={`${prefix}/docs`} className="rounded-full border border-fd-border px-5 py-3 font-semibold">{t.docs}</Link>
             </div>
-            <div className="max-w-xl"><CopyInstallCommand command="bunx oh-my-openagent install" label={t.install} /></div>
+            <div className="max-w-xl"><CopyInstallCommand command="bunx oh-my-opencode install" label={t.install} /></div>
           </div>
           <div className="relative overflow-hidden rounded-3xl border border-fd-border bg-fd-card p-5 shadow-2xl">
             <Image src="/images/omo.png" alt="Oh My OpenAgent preview" width={960} height={600} priority className="rounded-2xl" />
