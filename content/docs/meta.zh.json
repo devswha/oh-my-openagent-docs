@@ -1,14 +1,14 @@
 {
-  "title": "OmO 文档",
+  "title": "OmO Docs",
   "pages": [
     "index",
     "getting-started",
     "concepts",
     "guides",
     "agents",
-    "tools",
     "skills",
     "hooks",
+    "tools",
     "reference",
     "support"
   ]
