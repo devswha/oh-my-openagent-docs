@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { source } from '@/lib/source';
 import { i18n } from '@/lib/i18n';
 import { OMO_VERSION } from '@/lib/version';
+import { DocsSidebarFooter } from '@/components/docs-sidebar-footer';
 
 function HelpIcon() {
   return (
@@ -37,6 +38,10 @@ export default async function Layout({
     ({ en: 'Support', ko: '지원', ja: 'サポート', zh: '支持' } as const)[
       lang as 'en' | 'ko' | 'ja' | 'zh'
     ] ?? 'Support';
+  const languageLabel =
+    ({ en: 'Choose language', ko: '언어 선택', ja: '言語を選択', zh: '选择语言' } as const)[
+      lang as 'en' | 'ko' | 'ja' | 'zh'
+    ] ?? 'Choose language';
   const langPrefix = lang === i18n.defaultLanguage ? '' : `/${lang}`;
 
   return (
@@ -63,8 +68,10 @@ export default async function Layout({
       }}
       sidebar={{
         defaultOpenLevel: 1,
+        footer: <DocsSidebarFooter languageLabel={languageLabel} />,
       }}
       i18n={i18n}
+      slots={{ languageSelect: false, themeSwitch: false }}
       links={[
         {
           text: 'GitHub',
