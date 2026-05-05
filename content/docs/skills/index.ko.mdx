@@ -1,0 +1,57 @@
+---
+title: 스킬
+description: OmO가 전문 지시와 도구 bundle을 agent에 주입하는 방식.
+---
+
+## Skill이 하는 일
+
+Skill은 재사용 가능한 instruction pack입니다. 모든 agent prompt를 영구적으로 키우지 않고도 workflow, 제약, 예시, MCP tool 접근을 추가할 수 있습니다.
+
+| Skill 종류 | 보통 담는 내용 |
+|---|---|
+| Built-in skill | browser QA, git discipline, review, AI-slop removal 같은 일반 workflow. |
+| User skill | 사용자 OpenCode config 아래 저장된 개인 convention. |
+| Project skill | `.opencode/skills/`에 저장된 repository-specific workflow. |
+| MCP 포함 skill | 필요할 때만 로드하는 tool server와 지시. |
+
+## Category + Skill 패턴
+
+Category는 model/profile을 고르고, Skill은 domain playbook을 제공합니다.
+
+```ts
+task({
+  category: "writing",
+  load_skills: ["sync-openagent-docs"],
+  run_in_background: false,
+  prompt: "Refresh docs from upstream README and docs/reference facts.",
+});
+```
+
+원칙:
+
+- UI 작업은 diff가 작아 보여도 `visual-engineering`을 사용합니다.
+- 작업 domain과 겹치는 skill은 모두 load합니다.
+- project/user skill이 generic built-in보다 우선입니다.
+- skill prompt는 context, goal, downstream use, request를 구체화합니다.
+
+## 문서 동기화 Skill
+
+이 docs site에는 upstream `code-yeongyu/oh-my-openagent`와 문서를 맞추기 위한 project skill `sync-openagent-docs`가 포함되어 있습니다.
+
+이 skill은 future agent에게 다음을 요구합니다.
+
+- 수정 전에 upstream README, docs, package metadata, 관련 `.opencode/skills` 파일을 읽기.
+- package-name transition 보존: 설치 문서는 `oh-my-opencode`를 언급하고, OpenAgent는 product identity로 유지.
+- architecture boundary가 명확해지는 경우가 아니면 diagram 사용 줄이기.
+- English와 Korean을 먼저 업데이트하고, Japanese/Chinese route는 navigable하게 유지.
+- lint, build, route smoke check로 검증.
+
+## 좋은 Project Skill 작성법
+
+| 섹션 | 이유 |
+|---|---|
+| Purpose | 언제 skill을 로드해야 하는지 정의합니다. |
+| Required sources | stale docs와 추측을 막습니다. |
+| Workflow | 반복 가능한 경로를 제공합니다. |
+| Guardrails | naming, safety, verification rule을 고정합니다. |
+| Output expectations | 완료를 관찰 가능하게 만듭니다. |
