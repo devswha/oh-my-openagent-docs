@@ -1,64 +1,64 @@
 ---
 title: 도구
-description: OmO가 에이전트에게 제공하는 실행·검색·검증 표면.
+description: OmO가 실제 작업을 증명할 때 쓰는 도구들
 ---
 
 ## 도구 스택
 
-OmO에서 도구는 편의 기능이 아니라 증거 표면입니다. 완료를 말하기 전에 실제 사용자가 만지는 표면으로 확인해야 합니다.
+OmO에서 도구는 “편의 기능”이 아닙니다. 완료를 증명하는 표면입니다. 웹 UI는 브라우저에서, CLI는 tmux에서, API는 실제 요청으로 확인합니다.
 
-| 레이어 | 도구 | 증명하는 것 |
+| 레이어 | 도구 | 확인하는 것 |
 |---|---|---|
-| 코드 지능 | LSP diagnostics, definitions, references, workspace rename | 전체 build 전에 type/symbol 문제가 없는지. |
-| 구조 검색 | AST-Grep search/replace | 문자열 검색보다 안전한 code-pattern 변경. |
-| 파일 안전성 | Hashline-aware read/edit | 공유 worktree에서 읽은 뒤 파일이 바뀌지 않았는지. |
-| Runtime surface | tmux, browser, HTTP request, CLI driver | 사용자가 실제로 쓰는 표면에서 기능이 동작하는지. |
-| 외부 지식 | Context7, web search, GitHub code search, Librarian | 최신 문서, OSS 예제, remote repo 사실. |
-| Continuation | todos, background task notification, boulder state | 긴 작업이 조용히 멈추지 않고 이어지는지. |
+| 코드 지능 | LSP diagnostics, definitions, references, rename | build 전에 type/symbol 문제 확인 |
+| 구조 검색 | AST-Grep search/replace | 문자열 검색보다 안전한 code shape 변경 |
+| 파일 안전성 | Hashline-aware read/edit | 공유 worktree에서 파일이 중간에 바뀌지 않았는지 확인 |
+| Runtime surface | tmux, browser, HTTP request, CLI driver | 사용자가 실제로 만지는 표면에서 동작 확인 |
+| 외부 지식 | Context7, web search, GitHub code search, Librarian | 최신 문서, OSS 예제, remote repo 사실 확인 |
+| Continuation | todos, background notification, boulder state | 긴 작업이 조용히 멈추지 않게 유지 |
 
 ## LSP와 AST-Grep
 
 | 도구 | 쓰임 |
 |---|---|
-| `lsp_diagnostics` | 변경 파일의 language-server error/warning을 build 전에 확인합니다. |
-| `lsp_goto_definition` | 참조한 symbol의 정의 위치를 확인합니다. |
-| `lsp_find_references` | 동작을 바꾸기 전에 call site를 찾습니다. |
-| `lsp_rename` | `lsp_prepare_rename` 뒤 프로젝트 전체 rename을 적용합니다. |
-| `ast_grep_search` | 함수 호출이나 component shape 같은 완전한 AST pattern을 찾습니다. |
-| `ast_grep_replace` | capture한 변수를 보존하며 AST node를 바꿉니다. |
+| `lsp_diagnostics` | 변경 파일의 language-server error/warning 확인 |
+| `lsp_goto_definition` | symbol 정의 위치 확인 |
+| `lsp_find_references` | 동작을 바꾸기 전에 call site 확인 |
+| `lsp_rename` | `lsp_prepare_rename` 뒤 project-wide rename |
+| `ast_grep_search` | 함수 호출이나 component shape 같은 AST pattern 검색 |
+| `ast_grep_replace` | capture를 보존한 AST rewrite |
 
-Symbol 질문에는 LSP, code shape 질문에는 AST-Grep을 우선합니다.
+Symbol 문제는 LSP. 코드 모양 문제는 AST-Grep. 이렇게 보면 됩니다.
 
 ## 수동 QA 표면
 
-| 산출물 | 필요한 표면 |
+| 산출물 | 필요한 확인 |
 |---|---|
-| Web UI | browser automation: 페이지 열기, click/fill, console 확인, 시각 결과 확인. |
-| CLI/TUI | tmux: `--help`, happy path, 잘못된 입력 하나 이상. |
-| HTTP API | live process와 `curl` 또는 작은 driver. |
-| Library/SDK | 변경 경로를 import하고 end-to-end 실행하는 최소 script. |
-| 문서 사이트 | build와 변경 route smoke check. |
+| Web UI | page open, click/fill, console 확인, 시각 결과 확인 |
+| CLI/TUI | tmux에서 `--help`, happy path, 잘못된 입력 하나 |
+| HTTP API | live process에 `curl` 또는 driver 요청 |
+| Library/SDK | 변경 경로를 import해서 end-to-end 실행 |
+| 문서 사이트 | build와 route smoke check |
 
-“소스상 될 것 같다”는 완료 증거가 아닙니다.
+소스만 읽고 “될 것 같다”는 완료가 아닙니다.
 
 ## MCP와 검색
 
 | Source | 적합한 일 |
 |---|---|
-| Context7 | 공식 package docs와 API 예시. |
-| Web search | 최신 공개 사실, release, incident, page. |
-| GitHub code search | 공개 repo의 실제 사용 pattern. |
-| Librarian | Multi-repo 또는 외부 library 종합. |
-| Explore | 내부 codebase discovery와 pattern map. |
+| Context7 | 공식 package docs와 API 예시 |
+| Web search | 최신 공개 사실, release, incident |
+| GitHub code search | 공개 repo의 실제 사용 pattern |
+| Librarian | multi-repo 또는 외부 library 종합 |
+| Explore | 내부 codebase discovery와 pattern map |
 
 ## Hook과 Continuation
 
-OmO에는 많은 lifecycle hook이 있지만, 대부분 workflow는 아래 보장에 의존합니다.
+hook 이름을 다 외울 필요는 없습니다. 어떤 실패를 막는지만 알면 됩니다.
 
 | 계열 | 목적 |
 |---|---|
-| Session recovery | tool result 누락, empty content, malformed session state 복구. |
-| Todo continuation | pending todo가 있으면 계속 진행. |
-| Background notification | delegated work 완료/실패를 main agent에 알림. |
-| Interactive shell | CLI/TUI를 one-shot shell이 아니라 tmux에서 유지. |
-| Directory agents | directory-scoped instruction과 convention 주입. |
+| Session recovery | tool result 누락, empty content, malformed state 복구 |
+| Todo continuation | pending todo가 있으면 계속 진행 |
+| Background notification | delegated work 완료/실패 알림 |
+| Interactive shell | CLI/TUI를 tmux에서 유지 |
+| Directory agents | directory-scoped instruction 주입 |
