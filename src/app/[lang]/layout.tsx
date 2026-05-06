@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import { defineI18nUI } from 'fumadocs-ui/i18n';
 import { i18n } from '@/lib/i18n';
@@ -52,6 +53,7 @@ export default async function LangLayout({
     <html lang={lang} suppressHydrationWarning>
       <body>
         <RootProvider i18n={provider(lang)}>{children}</RootProvider>
+        <Analytics />
       </body>
     </html>
   );
