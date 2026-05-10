@@ -1,11 +1,11 @@
 ---
 title: Planning & Review Agents
-description: Prometheus, Metis, and Momus separate decisions from implementation.
+description: Prometheus, Metis, and Momus keep decisions out of implementation lanes.
 ---
 
-## Planning Loop
+Implementation agents should not invent product or architecture decisions mid-flight. This trio makes sure those decisions are made — and reviewed — before code starts changing.
 
-Prometheus plans, Metis looks for missing intent and AI-slop risks, and Momus reviews whether the plan is executable. This keeps implementation agents from inventing product or architecture decisions mid-flight.
+## Planning Loop
 
 | Step | Agent | Output |
 |---|---|---|
@@ -17,4 +17,4 @@ Prometheus plans, Metis looks for missing intent and AI-slop risks, and Momus re
 
 ## When to Use
 
-Use this lane for refactors, architecture decisions, multi-file features, and work where “just implement it” would leave too much to chance.
+Reach for this lane on refactors, architecture decisions, multi-file features, and anything where "just implement it" leaves too much to chance.

@@ -3,9 +3,9 @@ title: Tools
 description: Execution, retrieval, and verification surfaces available to OmO agents.
 ---
 
-## Tool Stack
+OmO treats tools as proof surfaces, not conveniences. Agents should use the same surface a real user touches before claiming work is done.
 
-OmO treats tools as proof surfaces, not conveniences. The agent should use the same surface a real user would use before claiming work is done.
+## Tool Stack
 
 | Layer | Tools | What they prove |
 |---|---|---|
@@ -18,28 +18,28 @@ OmO treats tools as proof surfaces, not conveniences. The agent should use the s
 
 ## LSP and AST-Grep
 
+Use LSP when the question is about symbols. Use AST-Grep when the question is about code shape.
+
 | Tool | Use |
 |---|---|
 | `lsp_diagnostics` | Check language-server errors and warnings on changed files before build. |
 | `lsp_goto_definition` | Confirm where a referenced symbol is defined. |
 | `lsp_find_references` | Find call sites before changing behavior. |
 | `lsp_rename` | Apply a safe project-wide rename after `lsp_prepare_rename`. |
-| `ast_grep_search` | Find complete AST patterns such as function calls or component shapes. |
+| `ast_grep_search` | Find AST patterns such as function calls or component shapes. |
 | `ast_grep_replace` | Rewrite matching AST nodes while preserving captured variables. |
 
-Use LSP when the question is about symbols. Use AST-Grep when the question is about code shape.
-
 ## Manual QA Surfaces
+
+"Source says it should work" is not a passing result.
 
 | Deliverable | Required surface |
 |---|---|
 | Web UI | Browser automation: open the page, click/fill, watch console, inspect visual result. |
 | CLI/TUI | tmux: run `--help`, happy path, and at least one bad input. |
-| HTTP API | Live process plus request client such as `curl` or a small driver. |
+| HTTP API | Live process plus a request client such as `curl` or a small driver. |
 | Library/SDK | Minimal script that imports and executes the changed path end to end. |
 | Documentation site | Build plus route smoke checks for the changed pages. |
-
-“Source says it should work” is not a passing result.
 
 ## MCP and Retrieval
 

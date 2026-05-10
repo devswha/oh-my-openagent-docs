@@ -3,9 +3,9 @@ title: Category Workers
 description: Category dispatch creates focused Sisyphus-Junior workers with model and skill routing.
 ---
 
-## Category Dispatch
+`task(category="...")` spawns a Sisyphus-Junior tuned for that domain. The category describes the work and picks the model profile; skills add the playbook.
 
-`task(category="...")` routes through Sisyphus-Junior. The category describes the work; OmO maps it to a model profile and appends category-specific instructions.
+## Category Dispatch
 
 | Category | Best for |
 |---|---|
@@ -20,7 +20,7 @@ description: Category dispatch creates focused Sisyphus-Junior workers with mode
 
 ## Category + Skill
 
-Categories choose the worker profile. Skills add the playbook:
+Categories pick the worker profile. Skills add the playbook.
 
 ```ts
 task({
@@ -30,4 +30,4 @@ task({
 });
 ```
 
-Sisyphus-Junior is intentionally focused: it executes one assigned unit and should verify before returning.
+Sisyphus-Junior is intentionally focused: it executes one assigned unit and must verify before returning.

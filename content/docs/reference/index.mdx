@@ -1,16 +1,18 @@
 ---
 title: Reference
-description: Packages, config files, CLI commands, categories, hooks, and environment variables.
+description: Packages, config files, CLI commands, categories, install flags, and environment variables.
 ---
+
+A flat reference for the things you look up mid-session: command names, config paths, agent options, install flags, and the env vars that flip telemetry off.
 
 ## Package Names
 
-The upstream rename is transitional. Prefer the upstream-published command when installing, and treat OpenAgent names as the public/product identity.
+The upstream rename is transitional. Prefer the upstream-published command when installing; treat OpenAgent names as the public product identity.
 
 | Name | Purpose |
 |---|---|
 | `oh-my-opencode` | Current upstream npm package and primary installer command. |
-| `oh-my-openagent` | Compatibility binary/product name used during the rename transition. |
+| `oh-my-openagent` | Compatibility binary and product name during the rename transition. |
 | `oh-my-openagent` plugin entry | Preferred OpenCode plugin entry when the installer can register it. |
 | `oh-my-opencode` plugin entry | Legacy entry still recognized during transition. |
 
@@ -27,7 +29,7 @@ The upstream rename is transitional. Prefer the upstream-published command when 
 
 ## Config Files
 
-User config is loaded first; project config can override it. JSONC is supported.
+User config loads first; project config can override it. JSONC is supported.
 
 | Scope | Paths |
 |---|---|
@@ -50,7 +52,7 @@ User config is loaded first; project config can override it. JSONC is supported.
 }
 ```
 
-If your installed package exposes a renamed schema, prefer the path reported by `doctor`.
+If your installed package exposes a renamed schema, use the path reported by `doctor`.
 
 ## Agent Options
 
@@ -58,8 +60,8 @@ If your installed package exposes a renamed schema, prefer the path reported by 
 |---|---|
 | `model` | Explicit `provider/model` override. |
 | `variant` | Variant such as `max`, `high`, `medium`, `low`, or `xhigh`. |
-| `fallback_models` | Ordered fallback chain used when a model/provider fails. |
-| `prompt`, `prompt_append` | Replace or extend an agent prompt; `file://` URIs are supported. |
+| `fallback_models` | Ordered chain used when a model or provider fails. |
+| `prompt`, `prompt_append` | Replace or extend an agent prompt; `file://` URIs supported. |
 | `tools` | Restrict the tools available to an agent. |
 | `disable` | Disable a specific agent. |
 | `permission` | Control permissions such as edit, bash, and webfetch. |
