@@ -3,6 +3,11 @@
   "pages": [
     "[Config Files](/ja/docs/reference#config-files)",
     "[CLI](/ja/docs/reference#cli)",
-    "[Telemetry](/ja/docs/reference#telemetry)"
+    "[Telemetry](/ja/docs/reference#telemetry)",
+    "configuration",
+    "features",
+    "quick-commands",
+    "environment",
+    "model-capabilities"
   ]
 }
